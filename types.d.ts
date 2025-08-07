@@ -1,6 +1,4 @@
-/// <reference types="vite/client" />
-
-type StaticData = {
+export type StaticData = {
   totalStorage: number;
   cpuModel: string;
   totalMemoryGB: number;
@@ -21,8 +19,14 @@ export interface IStatistics {
   totalmem: number;
   sysUptime: number;
   processUptime: number;
-  processes: string[];
+  processes: string;
 }
+
+type EventPayloadMapping = {
+  statistics: IStatistics;
+  getStaticData: StaticData;
+};
+
 export interface IElectronAPI {
   subscribeStatistics: (callback: (statistics: IStatistics) => void) => void;
   getStaticData: () => Promise<StaticData>;
