@@ -15,6 +15,7 @@ import {
   sysUptime,
   totalmem,
 } from "os-utils";
+import { ipcWebContentsSend } from "../util.js";
 
 const Polling_Interval = 500;
 
@@ -48,7 +49,7 @@ export const pollresources = async (mainWindow: BrowserWindow) => {
     // const cpuUsage = await getCpuUsage();
     const netStorage = getStorageData();
     // console.log({ usage, netStorage });
-    mainWindow.webContents.send("statistics", {
+    ipcWebContentsSend("statistics", mainWindow.webContents, {
       cpuUsage: usage,
       netStorage,
       platform: platform(),
@@ -85,11 +86,11 @@ const getStorageData = () => {
 export const getStaticData = () => {
   const totalStorage = getStorageData().total;
   const cpuModel = os.cpus()[0].model;
-  const totalMemoryDB = Math.floor(totalmem() / 1024);
+  const totalMemoryGB = Math.floor(totalmem() / 1024 / 1024 / 1024);
 
   return {
     totalStorage,
     cpuModel,
-    totalMemoryDB,
+    totalMemoryGB,
   };
 };
