@@ -1,0 +1,19 @@
+{
+  "appId": "com.electron.sap-mm",
+  "productName": "sap-mm",
+  "icon": "./desktopIcon.png",
+  "directories": {
+    "output": "dist-electron-builder"
+  },
+  "files": ["dist-electron/**/*", "dist-react/**/*"],
+  "mac": {
+    "target": "dmg"
+  },
+  "win": {
+    "target": ["portable", "nsis", "msi"]
+  },
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility"
+  }
+}
