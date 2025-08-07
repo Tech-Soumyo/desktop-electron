@@ -33,7 +33,7 @@ export const pollresources = async () => {
           cpuFree: freeCpu,
           allLoadavg: allLoadavg(),
           freemem: freemem(),
-          freememPercent: freememPercentage(),
+          freememPercent: 1 - freememPercentage(),
           totalmem: totalmem(),
           sysUptime: sysUptime(),
           processUptime: processUptime(),
